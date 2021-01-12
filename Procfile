@@ -1,2 +1,2 @@
-release: make release
+release: make migrate
 web: make run-prod

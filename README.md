@@ -1,4 +1,4 @@
-# Alpha
+# tms-template
 
 Thou shalt [use this repo as a set up](https://github.com/tgrx/tms-template/generate) for beginner to study web programming.
 
@@ -26,11 +26,10 @@ Thou shalt [use this repo as a set up](https://github.com/tgrx/tms-template/gene
 
 ### Optional requirements
 
-1. Google Chrome [[link]](https://www.google.com/chrome/)
 1. ChromeDriver for Selenium [[link]](https://chromedriver.chromium.org/) 
-1. GeckoDriver for Selenium [[link]](https://github.com/mozilla/geckodriver/releases) 
 1. GitHub CLI [[link]](https://cli.github.com/)
+1. Google Chrome [[link]](https://www.google.com/chrome/)
 1. Heroku CLI [[link]](https://devcenter.heroku.com/articles/heroku-cli)
 1. Make [[link:Windows]](https://chocolatey.org/packages/make)
     - Windows users can try choco
-1. Docker Desktop [[link]](https://www.docker.com/products/docker-desktop)
+

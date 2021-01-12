@@ -1,10 +1,8 @@
 #!/bin/bash
 
-echo "establishing TCP connection on $1:$2"
-
-for i in $(seq 1 30); do
+for i in $(seq 1 10); do
   echo "... attempt $i ..."
-  nc -z $1 $2 && echo Success && exit 0
+  nc -z localhost 5432 && echo Success && exit 0
   sleep 1
 done
 

@@ -1,7 +1,7 @@
 import pytest
 
-from framework.testlib.util import screenshot_on_failure
 from tests.functional.pages import MainPage
+from tests.functional.utils import screenshot_on_failure
 
 url = "http://localhost:8000"
 
@@ -16,14 +16,14 @@ def test(browser, request):
 
 
 def validate_title(page: MainPage):
-    assert page.title == "Alpha"
+    assert "Z37" in page.title
 
 
 def validate_content(page: MainPage):
     assert page.h1.tag_name == "h1"
-    assert page.h1.text == "Project Alpha"
+    assert page.h1.text == "Z37 study project"
     assert page.p.tag_name == "p"
-    assert page.p.text == "This is a template project."
+    assert page.p.text == "This is a second study project."
 
     html = page.html
     assert "<hr>" in html

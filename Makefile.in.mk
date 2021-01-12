@@ -1,4 +1,55 @@
 # -----------------------------------------------
+# independent variables
+
+DIR_VENV := $(shell pipenv --venv 2>/dev/null)
+
+
+# -----------------------------------------------
+# OS-depend variables
+
+ifeq ($(OS), Windows_NT)
+
+DIR_REPO := $(shell cd)
+
+else
+
+DIR_REPO := $(shell pwd)
+
+endif
+
+
+# -----------------------------------------------
+# Paths
+
+DIR_SCRIPTS = $(DIR_REPO)/scripts
+DIR_SRC := $(DIR_REPO)/src
+DIR_TESTS := $(DIR_REPO)/tests
+
+# -----------------------------------------------
+# Virtualenv-depend variables
+
+ifeq ($(shell python "$(DIR_SCRIPTS)/detect_venv.py"), True)
+
+IN_VENV := True
+RUN :=
+PIPENV_INSTALL := echo Cannot create venv under venv
+
+else
+
+IN_VENV := False
+RUN := pipenv run
+PIPENV_INSTALL := pipenv install
+
+endif
+
+
+# -----------------------------------------------
+# calculated variables
+
+PYTHON := $(RUN) python
+
+
+# -----------------------------------------------
 # OS-depend actions
 
 ifeq ($(OS), Windows_NT)
@@ -18,53 +69,3 @@ define log
 endef
 
 endif
-
-
-# -----------------------------------------------
-# independent variables
-
-DIR_REPO := $(realpath ./)
-DIR_VENV := $(shell $(PIPENV) --venv 2>/dev/null)
-
-# -----------------------------------------------
-# OS-depend variables
-
-ifeq ($(OS), Windows_NT)
-
-else
-
-endif
-
-
-# -----------------------------------------------
-# Paths
-
-DIR_CONFIG = $(abspath $(DIR_REPO)/config)
-DIR_SCRIPTS = $(abspath $(DIR_REPO)/scripts)
-DIR_SRC := $(abspath $(DIR_REPO)/src)
-DIR_TESTS := $(abspath $(DIR_REPO)/tests)
-
-
-# -----------------------------------------------
-# Virtualenv-depend variables
-
-ifeq ($(shell "$(DIR_SCRIPTS)/in_venv.py"), True)
-
-IN_VENV := True
-RUN :=
-PIPENV_INSTALL := echo Cannot create venv under venv
-
-else
-
-IN_VENV := False
-RUN := $(PIPENV) run
-PIPENV_INSTALL := $(PIPENV) install
-
-endif
-
-
-# -----------------------------------------------
-# calculated variables
-
-PYTHON := $(RUN) python
-MANAGEMENT := $(PYTHON) -m management.kb
